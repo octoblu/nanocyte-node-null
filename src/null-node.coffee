@@ -1,8 +1,8 @@
+_ = require 'lodash'
 class NullNode
   constructor: (@config={}, @data={}) ->
   onMessage:(message, callback=->)=>
-    key = @config.value
-    return callback null, message ? message[key]
+    return callback null, message if _.isNull(@config.value) ^ @config.not;
     callback null
 
 module.exports = NullNode
